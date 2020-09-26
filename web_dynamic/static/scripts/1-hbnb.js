@@ -1,10 +1,17 @@
 $(document).ready(function () {
-  let list_check = [];
-  ids = $(("input[type='checkbox']").prop("data-id"));
-  console.log(ids);
-  if($("input[type='checkbox']").is(":checked")){
-    list_check.push(ids);
+  let list_check = {};
+  $('li input[type="checkbox"]').change(function () {
+    if ($(this).is(":checked")){
+      list_check[$(this).data("id")] = $(this).data("name")
   } else {
-    console.log('no check')
+      delete list_check[$(this).data("id")]
+      console.log(list_check)
+      console.log('no check')
   }
-});
+      const values = Object.values(list_check)
+      const list = values.join(', ')
+      const short = list.slice(0, 30)
+      console.log(short)
+      $('.amenities h4').text(short + '...')
+      if (values.length === 0) $('.amenities h4').html('&nbsp;');
+  })})
