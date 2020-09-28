@@ -1,21 +1,21 @@
 $(document).ready(function () {
-  let list_check = {};
+  const listCheck = {};
   $('li input[type="checkbox"]').change(function () {
-    if ($(this).is(":checked")){
-      list_check[$(this).data("id")] = $(this).data("name")
+    if ($(this).is(':checked')) {
+      listCheck[$(this).data('id')] = $(this).data('name');
     } else {
-      delete list_check[$(this).data("id")]
+      delete listCheck[$(this).data('id')];
     }
-    const values = Object.values(list_check)
-    const list = values.join(', ')
-    const short = list.slice(0, 30)
-    $('.amenities h4').text(short + '...')
+    const values = Object.values(listCheck);
+    const list = values.join(', ');
+    const short = list.slice(0, 30);
+    $('.amenities h4').text(short + '...');
     if (values.length === 0) $('.amenities h4').html('&nbsp;');
-  })
-  
+  });
+
   const url = 'http://127.0.0.1:5001/api/v1/places_search/';
   $.get(url, function (info) {
-    if (info.status === 'OK'){
+    if (info.status === 'OK') {
       $('#api_status').addClass('available');
     } else {
       $('#api_status').removeClass('available');
@@ -59,5 +59,4 @@ $(document).ready(function () {
   /* */
 
   /* End Show places dynamic mode */
-
-})
+});
