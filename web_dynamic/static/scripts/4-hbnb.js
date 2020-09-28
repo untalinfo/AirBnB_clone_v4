@@ -17,7 +17,7 @@ $(document).ready(() => {
     $('.amenities h4').text(short + '...');
     if (values.length === 0) $('.amenities h4').html('&nbsp;');
   });
-  const url = 'http://127.0.0.1:5001/api/v1/places_search/';
+  const url = 'http://127.0.0.1:5001/api/v1/status/';
   $.get(url, function (info) {
     if (info.status === 'OK') {
       $('#api_status').addClass('available');
@@ -30,7 +30,6 @@ $(document).ready(() => {
   ajaxCall1();
 
   function ajaxCall1() {
-    console.log('1');
     $.ajax({
       type: 'POST',
       url: urlhost + porthost + '/api/v1/places_search/',
@@ -38,7 +37,6 @@ $(document).ready(() => {
       dataType: 'json',
       contentType: 'application/json',
       success: function(places) {
-        console.log('2');
         $.ajax({
           type: 'GET',
           url: urlhost + porthost + '/api/v1/users/',
